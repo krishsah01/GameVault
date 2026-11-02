@@ -1,0 +1,64 @@
+:root {
+    --gv-accent: #7c5cff;
+    --gv-accent-2: #22d3ee;
+    --gv-bg: #0f111a;
+    --gv-surface: #181b29;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    background-color: var(--gv-bg);
+    margin-bottom: 60px;
+}
+
+.gv-navbar {
+    background-color: var(--gv-surface);
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.gv-navbar .nav-link:hover,
+.gv-navbar .nav-link.active {
+    color: var(--gv-accent-2);
+}
+
+.gv-logo {
+    filter: drop-shadow(0 0 6px var(--gv-accent));
+}
+
+.gv-hero {
+    background: linear-gradient(135deg, rgba(124, 92, 255, 0.35), rgba(34, 211, 238, 0.18)), var(--gv-surface);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.gv-card {
+    background-color: var(--gv-surface);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: transform 0.15s ease, border-color 0.15s ease;
+}
+
+.gv-card:hover {
+    transform: translateY(-3px);
+    border-color: var(--gv-accent);
+}
+
+.gv-table thead th {
+    background-color: var(--gv-surface);
+    border-bottom: 2px solid var(--gv-accent);
+}
+
+.gv-rating {
+    font-weight: 700;
+    color: var(--gv-accent-2);
+}
+
+.gv-footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: var(--gv-surface);
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
