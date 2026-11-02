@@ -1,0 +1,43 @@
+@{
+    ViewData["Title"] = "About the Hobby";
+}
+
+<h1 class="mb-3">About the Hobby: Video Games</h1>
+
+<div class="row g-4">
+    <div class="col-lg-8">
+        <p class="lead">
+            Video games are one of the few hobbies that combine storytelling, problem solving, art, music and community in a single experience.
+        </p>
+        <p>
+            Whether it is exploring the open world of an RPG, working through a physics puzzle, or coordinating with a team in a competitive shooter,
+            every genre asks something different from the player. GameVault is my way of keeping track of the games that left the biggest impression.
+        </p>
+
+        <h2 class="h4 mt-4">Why I love it</h2>
+        <ul>
+            <li><strong>Stories you take part in</strong> &mdash; games let you shape the narrative instead of just watching it.</li>
+            <li><strong>Craft and engineering</strong> &mdash; behind every game is software, design and a lot of clever problem solving.</li>
+            <li><strong>Community</strong> &mdash; playing, discussing and modding games brings people together.</li>
+        </ul>
+
+        <h2 class="h4 mt-4">How this site works</h2>
+        <p>
+            Every game, genre and studio on this site is stored in a SQL Server LocalDB database. Entity Framework Core migrations create the tables
+            and insert the starter data, and the <a asp-controller="Games" asp-action="Index">My Games</a> page reads it back into an HTML table.
+        </p>
+    </div>
+
+    <div class="col-lg-4">
+        <div class="card gv-card">
+            <div class="card-body">
+                <h2 class="h5 card-title">Explore the vault</h2>
+                <div class="d-grid gap-2">
+                    <a asp-controller="Games" asp-action="Index" class="btn btn-outline-info">My Games</a>
+                    <a asp-controller="Genres" asp-action="Index" class="btn btn-outline-info">Genres</a>
+                    <a asp-controller="Developers" asp-action="Index" class="btn btn-outline-info">Studios</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
