@@ -1,0 +1,16 @@
+## .NET / Visual Studio
+bin/
+obj/
+.vs/
+*.user
+*.suo
+*.userprefs
+*.DotSettings.user
+.idea/
+.vscode/
+*.log
+publish/
+
+## OS
+.DS_Store
+Thumbs.db
