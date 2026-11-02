@@ -1,0 +1,28 @@
+@model IEnumerable<Genre>
+@{
+    ViewData["Title"] = "Genres";
+}
+
+<h1 class="mb-1">Genres</h1>
+<p class="text-body-secondary">How my game library breaks down by genre. Click a genre to filter the games table.</p>
+
+<div class="row g-3">
+    @foreach (var genre in Model)
+    {
+        <div class="col-sm-6 col-lg-4">
+            <div class="card h-100 gv-card">
+                <div class="card-body">
+                    <h2 class="h5 card-title">@genre.Name</h2>
+                    <p class="card-text text-body-secondary">@genre.Games.Count game(s)</p>
+                    <ul class="list-unstyled small mb-3">
+                        @foreach (var game in genre.Games.OrderBy(g => g.Title))
+                        {
+                            <li>&bull; @game.Title</li>
+                        }
+                    </ul>
+                    <a asp-controller="Games" asp-action="Index" asp-route-genreId="@genre.Id" class="btn btn-sm btn-outline-info">View in table</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>

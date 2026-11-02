@@ -1,0 +1,66 @@
+@model GameListViewModel
+@{
+    ViewData["Title"] = "My Games";
+}
+
+<h1 class="mb-1">My Games</h1>
+<p class="text-body-secondary">Everything below is read from the <code>GameVaultDb</code> SQL Server LocalDB database through Entity Framework Core.</p>
+
+<form asp-action="Index" method="get" class="row g-2 align-items-end mb-4">
+    <div class="col-md-5">
+        <label for="search" class="form-label">Search by title</label>
+        <input type="text" id="search" name="search" value="@Model.Search" class="form-control" placeholder="e.g. Zelda" />
+    </div>
+    <div class="col-md-4">
+        <label for="genreId" class="form-label">Genre</label>
+        <select id="genreId" name="genreId" asp-items="Model.Genres" class="form-select">
+            <option value="">All genres</option>
+        </select>
+    </div>
+    <div class="col-md-3 d-flex gap-2">
+        <button type="submit" class="btn btn-primary">Filter</button>
+        <a asp-action="Index" class="btn btn-outline-secondary">Reset</a>
+    </div>
+</form>
+
+@if (!Model.Games.Any())
+{
+    <div class="alert alert-info">No games match your filter.</div>
+}
+else
+{
+    <div class="table-responsive">
+        <table class="table table-hover align-middle gv-table">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(m => m.Games[0].Title)</th>
+                    <th>Genre</th>
+                    <th>Developer</th>
+                    <th>@Html.DisplayNameFor(m => m.Games[0].Platform)</th>
+                    <th>@Html.DisplayNameFor(m => m.Games[0].ReleaseYear)</th>
+                    <th class="text-end">@Html.DisplayNameFor(m => m.Games[0].MyRating)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var game in Model.Games)
+                {
+                    <tr>
+                        <td class="fw-semibold">@game.Title</td>
+                        <td>
+                            <a asp-action="Index" asp-route-genreId="@game.GenreId" class="badge text-bg-secondary text-decoration-none">@game.Genre?.Name</a>
+                        </td>
+                        <td>@game.Developer?.Name</td>
+                        <td>@game.Platform</td>
+                        <td>@game.ReleaseYear</td>
+                        <td class="text-end gv-rating">@game.MyRating / 10</td>
+                        <td class="text-end">
+                            <a asp-action="Details" asp-route-id="@game.Id" class="btn btn-sm btn-outline-info">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <p class="text-body-secondary small">Showing @Model.Games.Count game(s).</p>
+}

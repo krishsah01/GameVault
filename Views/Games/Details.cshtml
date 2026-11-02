@@ -1,0 +1,43 @@
+@model Game
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a asp-controller="Games" asp-action="Index">My Games</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@Model.Title</li>
+    </ol>
+</nav>
+
+<div class="card gv-card">
+    <div class="card-body p-4">
+        <h1 class="card-title h2">@Model.Title</h1>
+        <p class="text-body-secondary">
+            <span class="badge text-bg-secondary">@Model.Genre?.Name</span>
+            &middot; @Model.Platform &middot; @Model.ReleaseYear
+        </p>
+
+        <p class="lead">@Model.Description</p>
+
+        <dl class="row mb-0">
+            <dt class="col-sm-3">Developer</dt>
+            <dd class="col-sm-9">
+                @Model.Developer?.Name
+                @if (Model.Developer?.Country != null)
+                {
+                    var founded = Model.Developer.FoundedYear != null ? $", founded {Model.Developer.FoundedYear}" : "";
+                    <span class="text-body-secondary">(@(Model.Developer.Country + founded))</span>
+                }
+            </dd>
+
+            <dt class="col-sm-3">Platform</dt>
+            <dd class="col-sm-9">@Model.Platform</dd>
+
+            <dt class="col-sm-3">My rating</dt>
+            <dd class="col-sm-9 gv-rating">@Model.MyRating / 10</dd>
+        </dl>
+    </div>
+</div>
+
+<a asp-action="Index" class="btn btn-outline-secondary mt-3">&larr; Back to all games</a>

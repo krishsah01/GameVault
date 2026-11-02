@@ -1,0 +1,31 @@
+@model IEnumerable<Developer>
+@{
+    ViewData["Title"] = "Developers";
+}
+
+<h1 class="mb-1">Developers &amp; Studios</h1>
+<p class="text-body-secondary">The studios behind the games in my library.</p>
+
+<div class="table-responsive">
+    <table class="table table-hover align-middle gv-table">
+        <thead>
+            <tr>
+                <th>Studio</th>
+                <th>Country</th>
+                <th>Founded</th>
+                <th>Games in my library</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var dev in Model)
+            {
+                <tr>
+                    <td class="fw-semibold">@dev.Name</td>
+                    <td>@dev.Country</td>
+                    <td>@dev.FoundedYear</td>
+                    <td>@string.Join(", ", dev.Games.OrderBy(g => g.Title).Select(g => g.Title))</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
